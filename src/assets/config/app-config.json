@@ -1,0 +1,5 @@
+{
+    "apiHost": "http://localhost:5000",
+    "relayUrl": "http://localhost:5000/redact/relay",
+    "clientHost": "http://localhost:8080"
+  }
