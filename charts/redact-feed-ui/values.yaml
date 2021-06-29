@@ -139,4 +139,5 @@ extraVolumeMounts:
 
 extraVolumes:
   - name: nginx-config
-    emptyDir: {{ "{}" }}
+    emptyDir:
+      medium: Memory
