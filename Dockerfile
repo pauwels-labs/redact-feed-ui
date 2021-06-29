@@ -9,4 +9,3 @@ FROM nginx:1.21.0-alpine
 # RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/redact-feed /usr/share/nginx/html
-EXPOSE 8000
