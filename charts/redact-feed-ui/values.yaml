@@ -51,7 +51,7 @@ securityContext:
   capabilities:
     drop:
     - ALL
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   runAsNonRoot: true
   runAsUser: 1000
 
@@ -134,9 +134,9 @@ extraVolumeMounts:
   default:
   - name: config
     mountPath: /usr/local/bin/config
-  - name: nxinx-config
-    mountPath: /nxinx-config
+  - name: nginx-config
+    mountPath: /nginx-config
 
 volumes:
-  - name: nxinx-config
+  - name: nginx-config
     emptyDir: {}
