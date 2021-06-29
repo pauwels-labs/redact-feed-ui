@@ -134,5 +134,7 @@ extraVolumeMounts:
   default:
   - name: config
     mountPath: /usr/local/bin/config
+  - name: public
+    mountPath: /public
 
 extraVolumes: []
