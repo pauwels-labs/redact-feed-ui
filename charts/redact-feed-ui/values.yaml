@@ -134,7 +134,9 @@ extraVolumeMounts:
   default:
   - name: config
     mountPath: /usr/local/bin/config
-  - name: tmp
-    mountPath: /tmp
+  - name: nxinx-config
+    mountPath: /nxinx-config
 
-extraVolumes: []
+volumes:
+  - name: nxinx-config
+    emptyDir: {}
