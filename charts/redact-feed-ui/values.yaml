@@ -137,6 +137,6 @@ extraVolumeMounts:
   - name: nginx-config
     mountPath: /nginx-config
 
-volumes:
+extraVolumes:
   - name: nginx-config
     emptyDir: {}
