@@ -131,7 +131,6 @@ tolerations: []
 affinity: {}
 
 extraVolumeMounts:
-  default:
   - name: config
     mountPath: /usr/local/bin/config
   - name: nginx-config
