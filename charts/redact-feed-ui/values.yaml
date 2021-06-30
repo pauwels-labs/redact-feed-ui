@@ -133,7 +133,7 @@ affinity: {}
 extraVolumeMounts:
   default:
   - name: config
-    mountPath: /usr/local/bin/config
+    mountPath: /usr/share/nginx/html/assets/config
   - name: nginx-config
     mountPath: /nginx-config
 
