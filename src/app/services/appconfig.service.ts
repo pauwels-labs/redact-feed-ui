@@ -32,4 +32,8 @@ export class AppConfigService {
   get apiHost() : string {
     return this.appConfig.apiHost;
   }
+
+  get sessionCreateUrl() : string {
+    return this.appConfig.sessionCreateUrl;
+  }
 }
