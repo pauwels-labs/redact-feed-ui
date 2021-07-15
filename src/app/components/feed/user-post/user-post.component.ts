@@ -34,7 +34,7 @@ export class UserPostComponent implements OnInit {
   }
 
   onEditClicked(){
-    this.queryParams = this.queryParams.append('create', 'true');
+    this.queryParams = this.queryParams.append('edit', 'true');
     this.queryParams = this.queryParams.append('data_type', 'String');
     this.retrievalURL = this.generateRetrievalUrl();
   }
