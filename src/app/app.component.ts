@@ -1,14 +1,13 @@
-import { AfterViewInit, Component, ContentChild, HostListener, OnInit, ViewChild} from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import { FeedComponent } from './components/feed/feed/feed.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
-import { HostSessionService } from './services/host-session.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   
   @ViewChild(FeedComponent)
   public feedComponent!: FeedComponent;
@@ -17,20 +16,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   public newPostComponent!: NewPostComponent;
 
   title = 'redact-feed';
-  sessionToken = localStorage.getItem('feed.redact.sessionAuthorizationToken');
-  
-  constructor(private hostSessionService: HostSessionService) {}
 
-  ngOnInit(): void {
-    if (this.sessionToken == null) {
-      this.hostSessionService.getSessionToken().then(result => {
-        this.sessionToken = result;
-      });
-    }
-  }
+  constructor() {}
 
-  ngAfterViewInit(): void {
-  }
+  ngOnInit(): void {}
 
   @HostListener('window:message', ['$event'])
   PostSubmittedEvent(event: MessageEvent) {

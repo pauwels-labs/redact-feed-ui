@@ -23,7 +23,7 @@ export class HostSessionService {
     let isValid = false;
     let existingToken = localStorage.getItem('feed.redact.sessionAuthorizationToken');
     if (existingToken != null && this.jwtHelperService.getTokenExpirationDate(existingToken as string) != null) {
-      isValid = (this.jwtHelperService.getTokenExpirationDate(existingToken as string) as Date) < new Date(Date.now());
+      isValid = (this.jwtHelperService.getTokenExpirationDate(existingToken as string) as Date) > new Date(Date.now());
       if (isValid) {
         return new Promise(resolve => resolve(existingToken as string));
       }
