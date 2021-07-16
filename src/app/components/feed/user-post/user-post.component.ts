@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/api/post.model';
+import { AppConfigService } from 'src/app/services/appconfig.service';
 
 @Component({
   selector: 'app-user-post',
@@ -15,7 +16,9 @@ export class UserPostComponent implements OnInit {
   @Input() post!: Post;
   retrievalURL!: string;
 
-  constructor() {
+  constructor(
+    private appConfigService: AppConfigService
+  ) {
     this.queryParams = new HttpParams()
       .set("css", "body{font-family: Public Sans; margin:0px;}iframe{border:none;height:86px;width:700;position:absolute;}");
   }
@@ -50,7 +53,7 @@ export class UserPostComponent implements OnInit {
   }
 
   generateRetrievalUrl() {
-    return`http://localhost:8080/data/${this.post.contentReference}?${this.queryParams.toString()}`;
+    return `${this.appConfigService.sessionCreateUrl}/data/${this.post.contentReference}?${this.queryParams.toString()}`;
   }
 
   /**

@@ -21,7 +21,6 @@ export class FeedService {
     return from(this.hostSessionService.getSessionToken())
     .pipe(
       mergeMap((jwt: string) => {
-        console.log(jwt)
         let headers = new HttpHeaders()
           .set('Authorization', `Bearer ${jwt}`);
         return this.http.get<Post[]>(`${this.appConfigService.apiHost}/feed?skip=${skip}&limit=${limit}`, {headers});
