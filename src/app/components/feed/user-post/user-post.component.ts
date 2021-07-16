@@ -53,7 +53,7 @@ export class UserPostComponent implements OnInit {
   }
 
   generateRetrievalUrl() {
-    return `${this.appConfigService.sessionCreateUrl}/data/${this.post.contentReference}?${this.queryParams.toString()}`;
+    return `${this.appConfigService.clientHost}/data/${this.post.contentReference}?${this.queryParams.toString()}`;
   }
 
   /**
