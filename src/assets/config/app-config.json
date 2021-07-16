@@ -1,5 +1,5 @@
 {
-    "apiHost": "https://redact-feed-api.dev.pauwelslabs.com",
+    "apiHost": "http://localhost:5000",
     "relayUrl": "https://redact-feed-api.dev.pauwelslabs.com/redact/relay",
     "sessionCreateUrl": "https://redact-feed-api.dev.pauwelslabs.com/redact/session_create",
     "clientHost": "http://localhost:8080"

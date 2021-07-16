@@ -17,13 +17,13 @@ export class FeedService {
     private hostSessionService: HostSessionService
   ) { }
 
-  getPosts(): Observable<Post[]> {
+  getPosts(skip: number, limit: number): Observable<Post[]> {
     return from(this.hostSessionService.getSessionToken())
     .pipe(
       mergeMap((jwt: string) => {
         let headers = new HttpHeaders()
           .set('Authorization', `Bearer ${jwt}`);
-        return this.http.get<Post[]>(`${this.appConfigService.apiHost}/feed`, {headers});
+        return this.http.get<Post[]>(`${this.appConfigService.apiHost}/feed?skip=${skip}&limit=${limit}`, {headers});
       }))
   }
 }

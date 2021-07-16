@@ -25,11 +25,16 @@ export class NewPostComponent implements OnInit {
     this.newPostSrc = this.generatePostUrl();
   }
 
+  /**
+   * Generate a random ID which will be used in the Redact path of the new post
+   * @returns the Redact URL of a non-existent post
+   */
   private generatePostUrl() {
     const newPostUuid = uuid.v4();
     let params = new HttpParams()
       .set("edit",true)
       .set("relay_url", this.appConfigService.relayUrl)
+      .set("js_message", "create")
       .set("css", "input.text{height:40px;width:640px;}iframe{border:none;height:86px;width:700;position:absolute;}body{margin:0px;}")
     return `${this.appConfigService.clientHost}/data/.redact.redact-feed.post.${newPostUuid}.?${params.toString()}`;
   }
