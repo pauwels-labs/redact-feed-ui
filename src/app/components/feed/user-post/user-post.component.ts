@@ -9,15 +9,6 @@ import { Post } from 'src/app/models/api/post.model';
 })
 export class UserPostComponent implements OnInit {
 
-  @HostListener('window:message', ['$event'])
-  PostSubmittedEvent(event: MessageEvent) {
-    if(event.data === "data created") {
-      this.queryParams.delete('create');
-      this.queryParams.delete('data_type');
-      this.retrievalURL = this.generateRetrievalUrl();
-    }
-  }
-
   showEdit = false;
   queryParams: HttpParams;
 
@@ -33,24 +24,46 @@ export class UserPostComponent implements OnInit {
     this.retrievalURL = this.generateRetrievalUrl();
   }
 
+  /**
+   * Get the Redact path of the data entry
+   */
+  public get postPath() {
+    return this.post.contentReference;
+  }
+
+  /**
+   * Retrieves the editable Redact entry
+   */
   onEditClicked(){
     this.queryParams = this.queryParams.append('edit', 'true');
     this.queryParams = this.queryParams.append('data_type', 'String');
+    this.queryParams = this.queryParams.append('js_message', `update:${this.post.contentReference}`);
+    this.retrievalURL = this.generateRetrievalUrl();
+  }
+
+  /**
+   * Retrieves the ineditable Redact entry
+   */
+  onSubmit() {
+    this.queryParams = this.queryParams.delete('edit');
     this.retrievalURL = this.generateRetrievalUrl();
   }
 
   generateRetrievalUrl() {
-    return `http://localhost:8080/data/${this.post.contentReference}?${this.queryParams.toString()}`;
+    return`http://localhost:8080/data/${this.post.contentReference}?${this.queryParams.toString()}`;
   }
 
+  /**
+   * Called when the mouse moves over the component
+   */
   over(){
     this.showEdit = true;
   }
 
+  /**
+   * Called when the mouse moves out of the component
+   */
   out(){
     this.showEdit = false;
   }
-
-  
-
 }
