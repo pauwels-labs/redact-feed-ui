@@ -49,6 +49,8 @@ export class UserPostComponent implements OnInit {
    */
   onSubmit() {
     this.queryParams = this.queryParams.delete('edit');
+    this.queryParams = this.queryParams.delete('js_message');
+    this.queryParams = this.queryParams.delete('data_type');
     this.retrievalURL = this.generateRetrievalUrl();
   }
 
