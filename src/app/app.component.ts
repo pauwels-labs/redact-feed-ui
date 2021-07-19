@@ -23,13 +23,17 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:message', ['$event'])
   PostSubmittedEvent(event: MessageEvent) {
-    if (event.data === "create") {
-      this.feedComponent.addLatestPost();
-      this.newPostComponent.refresh();
-    } else if ((event.data as string).startsWith("update:")) {
-      let path = (event.data as string).substring('update:'.length);
-      this.feedComponent.updatePost(path);
+    if (typeof(event.data) === 'string') {
+      let message = atob(event.data as string);
+      if (message === "create") {
+        this.feedComponent.addLatestPost();
+        this.newPostComponent.refresh();
+      } else if (message.startsWith("update=")) {
+        let path = message.substring('update='.length);
+        this.feedComponent.updatePost(path);
+      }
     }
+    
   }
 
 }

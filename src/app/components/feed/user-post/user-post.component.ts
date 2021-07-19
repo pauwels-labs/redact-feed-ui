@@ -40,7 +40,7 @@ export class UserPostComponent implements OnInit {
   onEditClicked(){
     this.queryParams = this.queryParams.append('edit', 'true');
     this.queryParams = this.queryParams.append('data_type', 'String');
-    this.queryParams = this.queryParams.append('js_message', `update:${this.post.contentReference}`);
+    this.queryParams = this.queryParams.append('js_message', btoa(`update=${this.post.contentReference}`));
     this.retrievalURL = this.generateRetrievalUrl();
   }
 
