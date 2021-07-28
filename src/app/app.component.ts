@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
       } else if (message.startsWith("update=")) {
         let path = message.substring('update='.length);
         this.feedComponent.updatePost(path);
+      } else if (message.startsWith("height=")) {
+        let pathAndHeight = message.substring('height='.length);
+        let paramArr = pathAndHeight.split(":", 2);
+        this.feedComponent.updateHeight(paramArr[0], paramArr[1]);
+
       }
     }
     
