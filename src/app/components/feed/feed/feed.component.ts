@@ -68,6 +68,17 @@ export class FeedComponent implements OnInit {
         component.onSubmit();
       }
     }
+  }
 
+  /**
+   * Update the component which holds the Redacted data with the given path
+   * @param path The path of Redacted data to be updated
+   */
+  updateHeight(path: string, height: string) {
+    for (var component of this.postComponents.toArray()) {
+      if (component.postPath === path) {
+        component.onHeightUpdate(parseInt(height));
+      }
+    }
   }
 }

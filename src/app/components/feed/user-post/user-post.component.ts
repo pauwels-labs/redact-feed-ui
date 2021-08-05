@@ -16,16 +16,19 @@ export class UserPostComponent implements OnInit {
   @Input() post!: Post;
   retrievalURL!: string;
 
+  height = 22;
+
   constructor(
     private appConfigService: AppConfigService
   ) {
     this.queryParams = new HttpParams()
-      .set("css", "body{font-family: Public Sans; margin:0px;}iframe{border:none;height:86px;width:700;position:absolute;}");
+      .set("css", "p, body, iframe {margin: 0px;padding: 0px;border: none;width: 100%;display: block;font-size: 18px;}iframe {height: 100%;}");
   }
 
   ngOnInit(): void { 
+    this.queryParams = this.queryParams.append("js_height_msg_prefix",  btoa(`height=${this.post.contentReference}:`));
     this.retrievalURL = this.generateRetrievalUrl();
-  }
+}
 
   /**
    * Get the Redact path of the data entry
@@ -40,7 +43,7 @@ export class UserPostComponent implements OnInit {
   onEditClicked(){
     this.queryParams = this.queryParams.append('edit', 'true');
     this.queryParams = this.queryParams.append('data_type', 'String');
-    this.queryParams = this.queryParams.append('js_message', `update:${this.post.contentReference}`);
+    this.queryParams = this.queryParams.append('js_message', btoa(`update=${this.post.contentReference}`));
     this.retrievalURL = this.generateRetrievalUrl();
   }
 
@@ -49,7 +52,18 @@ export class UserPostComponent implements OnInit {
    */
   onSubmit() {
     this.queryParams = this.queryParams.delete('edit');
+    this.queryParams = this.queryParams.delete('js_message');
+    this.queryParams = this.queryParams.delete('data_type');
     this.retrievalURL = this.generateRetrievalUrl();
+  }
+
+  /**
+   * Retrieves the ineditable Redact entry
+   */
+   onHeightUpdate(height: number) {
+     if (height !== 0) {
+      this.height = height;
+     }
   }
 
   generateRetrievalUrl() {
