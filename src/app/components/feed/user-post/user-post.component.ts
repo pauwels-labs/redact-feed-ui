@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/api/post.model';
-import { AppConfigService } from 'src/app/services/appconfig.service';
+import { ClientHostService } from 'src/app/services/client-host.service';
 
 @Component({
   selector: 'app-user-post',
@@ -19,10 +19,10 @@ export class UserPostComponent implements OnInit {
   height = 22;
 
   constructor(
-    private appConfigService: AppConfigService
+    private clientHostService: ClientHostService
   ) {
     this.queryParams = new HttpParams()
-      .set("css", "p, body, iframe {margin: 0px;padding: 0px;border: none;width: 100%;display: block;font-size: 18px;}iframe {height: 100%;}");
+      .set("css", "p, body, iframe {margin: 0px;padding: 0px;border: none;width: 100%;display: block;font-size: 18px;}iframe {height: 100%;}img {max-width:800px;}video {width:100%;max-width:800px;}");
   }
 
   ngOnInit(): void { 
@@ -67,7 +67,7 @@ export class UserPostComponent implements OnInit {
   }
 
   generateRetrievalUrl() {
-    return `${this.appConfigService.clientHost}/data/${this.post.contentReference}?${this.queryParams.toString()}`;
+    return `${this.clientHostService.getClientHost()}/data/${this.post.contentReference}?${this.queryParams.toString()}`;
   }
 
   /**

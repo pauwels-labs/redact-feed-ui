@@ -25,10 +25,6 @@ export class AppConfigService {
     return this.appConfig.relayUrl;
   }
 
-  get clientHost() : string {
-    return this.appConfig.clientHost;
-  }
-
   get apiHost() : string {
     return this.appConfig.apiHost;
   }

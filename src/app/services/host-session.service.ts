@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { JwtResponse } from '../models/api/jwt-token-response.model';
 import { AppConfigService } from './appconfig.service';
+import { ClientHostService } from './client-host.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class HostSessionService {
 
   constructor(
     private http: HttpClient,
-    private appConfigService: AppConfigService
+    private appConfigService: AppConfigService,
+    private clientHostService: ClientHostService
+
   ) { 
     this.jwtHelperService = new JwtHelperService();
   }
@@ -31,7 +34,7 @@ export class HostSessionService {
 
     return new Promise(resolve => {
       this.http.post<JwtResponse>(
-        `${this.appConfigService.clientHost}/proxy`,
+        `${this.clientHostService.getClientHost()}/proxy`,
         { 
           host_url: this.appConfigService.sessionCreateUrl
         }

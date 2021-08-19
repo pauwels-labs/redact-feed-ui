@@ -1,0 +1,61 @@
+.dialog {
+    font-family: Public Sans;
+}
+
+.dialog-header {
+    font-weight: 1000;
+    font-size: 20px;
+    text-align: center;
+}
+
+.port-form {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.port-input {
+    width: 75px;
+}
+
+.update-button {
+    margin-left: 10px;
+}
+
+.expandable-title {
+    font-size: 12px;
+    cursor: pointer;
+    margin: 4px;
+    color: #223574;
+}
+
+.expandable-wrapper {
+    font-size: 12px;
+}
+
+
+.expandable-content {
+    margin: 13px;
+    text-align: justify;
+    .header {
+        font-weight: 1000;
+    }
+}
+
+.minus {
+    margin-right: 2px;
+}
+
+.expandable {
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
+    overflow: hidden;
+    max-height: 0;
+    margin: 0px 0px 0px 0px;
+    background-color: rgb(236, 239, 253);
+}
+.expandable.show {
+    max-height: 300px;
+}
