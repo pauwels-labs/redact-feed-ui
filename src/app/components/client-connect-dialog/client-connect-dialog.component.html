@@ -1,0 +1,36 @@
+<div class="dialog">
+    <p class="dialog-header">Oops! The site could not connect to your Redact Client.</p>
+    <div class="port-form">
+        Your Client Port
+        <br>
+        <input class="port-input" type="number" [value]="clientPort" #clientPortInput>
+        <button class="update-button app-button" (click)="onUpdate(clientPortInput.value)">Update</button>
+    </div>
+
+    <p class="expandable-title" (click)="whyClicked()"><span *ngIf="!whyExpandableShow">+</span><span class="minus" *ngIf="whyExpandableShow">-</span> Why am I seeing this?</p>
+    <div class="expandable-wrapper expandable" [ngClass]="{'show': whyExpandableShow}">
+        <p class="expandable-content">
+            This website is Redact-enabled, which means it uses the Redact Client on your device to decrypt and display data on your browser.
+            <br/><br/>
+            If you are seeing this error it means the browser cannot communicate with your client to access encrypted data, and as a result cannot function properly.
+        </p>
+    </div>
+    <p class="expandable-title" (click)="troubleClicked()"><span *ngIf="!troubleExpandableShow">+</span><span class="minus" *ngIf="troubleExpandableShow">-</span> Still having trouble?</p>
+    <div class="expandable-wrapper expandable" [ngClass]="{'show': troubleExpandableShow}">
+        <p class="expandable-content">
+            <span class="header">Install Redact Client</span><br/>
+            To use this website you need to have the Redact Client installed and configured on this device. The <a href="https://docs.redact.ws/en/latest/getting-started.html">Redact Docs</a> will get you started.
+            The Redact Client is not yet available for mobile devices.
+            <br/><br/>
+            <span class="header">Configure Client Port</span><br/>
+            The Redact Client port, which is provided to the Redact Client as a configuration value, must match the port provided here.
+            <br/><br/>
+            <span class="header">Enable CORS</span><br/>
+            This page currenty requires that Cross-Origin resource sharing is enabled in your browser.
+            <br/><br/>
+            <span class="header">Contact Us</span><br/>
+            Still having trouble getting things working? <a href="ttps://www.redact.ws/contact">Contact us</a> and we will be happy to assist!
+            
+        </p>
+    </div>
+</div>

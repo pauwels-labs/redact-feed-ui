@@ -1,6 +1,10 @@
 import { Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientConnectDialogComponent } from './components/client-connect-dialog/client-connect-dialog.component';
 import { FeedComponent } from './components/feed/feed/feed.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { ClientHostService } from './services/client-host.service';
+import { ClientService } from './services/client.service';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +21,37 @@ export class AppComponent implements OnInit {
 
   title = 'redact-feed';
 
-  constructor() {}
+  constructor(
+    public dialog: MatDialog,
+    private clientService: ClientService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.clientService.getHealth().subscribe(
+      data => console.log('success', data),
+      _error => {
+        let dialogRef = this.dialog.open(ClientConnectDialogComponent, {
+          data: {},
+          panelClass: 'client-connect-dialog'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            window.location.reload();
+          }
+        });
+      }
+    );
+  }
 
   @HostListener('window:message', ['$event'])
   PostSubmittedEvent(event: MessageEvent) {
     if (typeof(event.data) === 'string') {
       let message = atob(event.data as string);
-      if (message === "create") {
+
+      if (message.startsWith("create")) {
         this.feedComponent.addLatestPost();
-        this.newPostComponent.refresh();
+        this.newPostComponent.refresh(message);
       } else if (message.startsWith("update=")) {
         let path = message.substring('update='.length);
         this.feedComponent.updatePost(path);

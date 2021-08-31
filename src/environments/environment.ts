@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   relayUrl: "localhost:5000/redact/relay",
-  clientHost: "localhost:8080"
 };
 
 /*
