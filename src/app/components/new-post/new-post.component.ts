@@ -59,9 +59,6 @@ export class NewPostComponent implements OnInit {
             height:40px;
             overflow:hidden;
           }
-          #submit{
-            background: none;
-          }
         `.replace(/(\r\n|\n|\r)/gm, ""))
     return `${this.clientHostService.getClientHost()}/data/.redact.redact-feed.post.${newPostUuid}.?${params.toString()}`;
   }
