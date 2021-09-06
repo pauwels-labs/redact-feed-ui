@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <img [src]="pictureUrl" class="profile-picture"/>
+
+    <div class="username-wrapper">
+        <div *ngIf="user == null" class="username placeholder"></div>
+        <p *ngIf="user != null" class="username">{{username}}</p>
+    </div>
+
+    <div class="real-name-wrapper">
+        <div *ngIf="user == null" class="real-name placeholder"></div>
+        <p *ngIf="user != null" class="real-name">{{fullName}}</p>
+    </div>
+
+    <div *ngIf="proofs != null" class="keybase-proofs">
+        <div class="proof-item" *ngFor="let proof of proofs">
+            <a [href]="proof.service_url">{{proof.nametag}}@{{proof.proof_type}}</a>
+        </div>
+    </div>
+
+    <div class="friend-buttons">
+        <button>Request Access</button>
+        <button>Grant Access</button>
+    </div>
+</div>

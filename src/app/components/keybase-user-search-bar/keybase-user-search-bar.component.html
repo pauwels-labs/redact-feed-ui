@@ -1,0 +1,17 @@
+
+<div class="search-container">
+    <input class="search-input" type="text" (keydown)="startUserSearch()" (keyup)="userSearchInput$.next($event.target)" (focus)="onFocus()">
+    <div class="search-icon-wrapper">
+        <mat-icon class="search-icon">search</mat-icon>
+    </div>
+</div>
+<div class="search-results-container-outer" [ngClass]="{'show': showSearchResults}">
+    <p *ngIf="keybaseSearchResponse == null" class="searching-text">Searching for Keybase Users...</p>
+    <p *ngIf="keybaseSearchResponse != null && keybaseUserResults.length == 0" class="searching-text">Could not find that user.</p>
+    <div class="search-results-container-inner" *ngIf="keybaseSearchResponse != null && keybaseUserResults.length > 0">
+        <div class="keybase-user-result" *ngFor="let user of keybaseUserResults" (click)="clickUser(user)">
+            <img [src]="getProfilePictureSrc(user)" class="profile-image">
+            <p class="profile-name">{{user.keybase.username}}</p>
+        </div>
+    </div>
+</div>

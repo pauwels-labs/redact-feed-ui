@@ -1,0 +1,60 @@
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+}
+
+.username-wrapper {
+    .username {
+        font-size: 30px;
+        text-align: center;
+        margin: 18px auto;
+    }
+     
+    .username.placeholder {
+        width: 150px;
+        height: 35.5px;
+        background-color: rgb(189, 189, 189);
+    }
+}
+
+.real-name-wrapper {
+    .real-name {
+        text-align: center;
+        font-size: 16px;
+        margin: 0px auto;
+    }
+
+    .real-name.placeholder {
+        height:19px;
+        width: 100px;
+        background-color: rgb(189, 189, 189);
+    }
+}
+
+.keybase-proofs {
+    margin-top: 5px;
+    background: #e8e8e8;
+    padding: 8px;
+    border-radius: 3px;
+
+    .proof-item {
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+.friend-buttons {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    button {
+        margin: 5px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        background-color: #adadf7;
+    }
+}

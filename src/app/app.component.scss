@@ -7,4 +7,20 @@
 .page-header {
     font-size: 48px;
     margin-top: 52px;
+    position: relative;
+}
+
+.page-title {
+    display: inline-block;
+}
+
+.page-header {
+    position: relative;
+}
+
+app-keybase-user-search-bar {
+    float: right;
+    display: flex;
+    margin-top: 17px;
+    position: relative;
 }

@@ -1,10 +1,15 @@
 import { Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ClientConnectDialogComponent } from './components/client-connect-dialog/client-connect-dialog.component';
 import { FeedComponent } from './components/feed/feed/feed.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { KeybaseUser, KeybaseUserLookupResponse } from './models/keybase/keybase-user-lookup-response.model';
+import { KeybaseSearchResult, KeybaseUserSearchResponse, keybaseUserSummary } from './models/keybase/keybase-user-search-response.model';
 import { ClientHostService } from './services/client-host.service';
 import { ClientService } from './services/client.service';
+import { KeybaseUserService } from './services/keybase-user.service';
 
 @Component({
   selector: 'app-root',
@@ -24,11 +29,12 @@ export class AppComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private clientService: ClientService
-  ) {}
+  ) { }
+
 
   ngOnInit(): void {
     this.clientService.getHealth().subscribe(
-      data => console.log('success', data),
+      _resp => {},
       _error => {
         let dialogRef = this.dialog.open(ClientConnectDialogComponent, {
           data: {},
@@ -59,10 +65,7 @@ export class AppComponent implements OnInit {
         let pathAndHeight = message.substring('height='.length);
         let paramArr = pathAndHeight.split(":", 2);
         this.feedComponent.updateHeight(paramArr[0], paramArr[1]);
-
       }
     }
-    
   }
-
 }

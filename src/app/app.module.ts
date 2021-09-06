@@ -7,11 +7,14 @@ import { UserPostComponent } from './components/feed/user-post/user-post.compone
 import { SafePipe } from './pipes/safe.pipe';
 import { NewPostComponent } from './components/new-post/new-post.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FeedService } from './services/feed.service';
 import { AppConfigService } from './services/appconfig.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClientConnectDialogComponent } from './components/client-connect-dialog/client-connect-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { KeybaseUserSearchBarComponent } from './components/keybase-user-search-bar/keybase-user-search-bar.component';
+import { KeybaseUserViewComponent } from './components/keybase-user-search-bar/keybase-user-view/keybase-user-view.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,16 @@ import { MatDialogModule } from '@angular/material/dialog';
     SafePipe,
     NewPostComponent,
     ClientConnectDialogComponent,
+    KeybaseUserSearchBarComponent,
+    KeybaseUserViewComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
+    FormsModule
   ],
   providers: [
     { 
