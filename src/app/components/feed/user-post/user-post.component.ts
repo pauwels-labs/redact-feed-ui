@@ -25,10 +25,10 @@ export class UserPostComponent implements OnInit {
       .set("css", "p, body, iframe {margin: 0px;padding: 0px;border: none;width: 100%;display: block;font-size: 18px;}iframe {height: 100%;}img {max-width:800px;}video {width:100%;max-width:800px;}");
   }
 
-  ngOnInit(): void { 
-    this.queryParams = this.queryParams.append("js_height_msg_prefix",  btoa(`height=${this.post.contentReference}:`));
+  ngOnInit(): void {
+    this.queryParams = this.queryParams.append("js_height_msg_prefix", btoa(`height=${this.post.contentReference}:`));
     this.retrievalURL = this.generateRetrievalUrl();
-}
+  }
 
   /**
    * Get the Redact path of the data entry
@@ -60,14 +60,14 @@ export class UserPostComponent implements OnInit {
   /**
    * Retrieves the ineditable Redact entry
    */
-   onHeightUpdate(height: number) {
-     if (height !== 0) {
+  onHeightUpdate(height: number) {
+    if (height !== 0) {
       this.height = height;
-     }
+    }
   }
 
   generateRetrievalUrl() {
-    return `${this.clientHostService.getClientHost()}/data/${this.post.contentReference}?${this.queryParams.toString()}`;
+    return `${this.clientHostService.getClientHost()}/unsecure/data/${this.post.contentReference}?${this.queryParams.toString()}`;
   }
 
   /**

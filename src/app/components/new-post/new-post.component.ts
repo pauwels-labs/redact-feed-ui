@@ -60,7 +60,7 @@ export class NewPostComponent implements OnInit {
             overflow:hidden;
           }
         `.replace(/(\r\n|\n|\r)/gm, ""))
-    return `${this.clientHostService.getClientHost()}/data/.redact.redact-feed.post.${newPostUuid}.?${params.toString()}`;
+    return `${this.clientHostService.getClientHost()}/unsecure/data/.redact.redact-feed.post.${newPostUuid}.?${params.toString()}`;
   }
 
   /**
@@ -90,6 +90,6 @@ export class NewPostComponent implements OnInit {
           overflow:hidden;
         }`.replace(/(\r\n|\n|\r)/gm, ""))
       .set("data_type", "Media")
-    return `${this.clientHostService.getClientHost()}/data/.redact.redact-feed.post.${newPostUuid}.?${params.toString()}`;
+    return `${this.clientHostService.getClientHost()}/unsecure/data/.redact.redact-feed.post.${newPostUuid}.?${params.toString()}`;
   }
 }
