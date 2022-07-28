@@ -1,0 +1,5 @@
+{
+  "apiHost": "https://feed-nginx:${FEED_NGINX_PORT}",
+  "relayUrl": "https://feed-nginx:${FEED_NGINX_PORT}/redact/relay",
+  "sessionCreateUrl": "https://feed-nginx:${FEED_NGINX_PORT}/redact/session-create/"
+}
