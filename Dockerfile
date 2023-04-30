@@ -1,4 +1,4 @@
-FROM node:18.16.0-alpine3.13 AS build
+FROM node:18.16.0-alpine3.17 AS build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN node --dns-result-order=ipv6first "$(which npm)" install
