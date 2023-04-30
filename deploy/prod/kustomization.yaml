@@ -23,14 +23,7 @@ patches:
         secretKey: "prod.yaml"
         remoteRef:
           key: "tenants/t-${tenantname}/configs/prod/${name}${namesuffix}/config"
-          property: config.yaml
-    - op: add
-      path: /spec/data/-
-      value:
-        secretKey: gcloud-sa-key.json
-        remoteRef:
-          key: "tenants/t-${tenantname}/configs/prod/${name}${namesuffix}/config"
-          property: gcloud-sa-key.json
+          property: config.json
   target:
     group: external-secrets.io
     version: v1beta1
@@ -42,6 +35,17 @@ patches:
       value:
         extract:
           key: "tenants/t-${tenantname}/configs/prod/${name}${namesuffix}/env"
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts/-
+      value:
+        name: nginx-config
+        mountPath: /nginx-config
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: nginx-config
+        emptyDir:
+          medium: Memory
   target:
     group: external-secrets.io
     version: v1beta1
