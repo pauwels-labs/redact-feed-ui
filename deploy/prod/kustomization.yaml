@@ -17,6 +17,9 @@ patches:
     kind: SecretStore
     name: config-.*
 - patch: |-
+    - op: replace
+      path: /spec/data/0/remoteRef/property
+      value: config.json
     - op: add
       path: /spec/data/-
       value:
