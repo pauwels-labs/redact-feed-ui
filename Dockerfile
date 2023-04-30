@@ -1,7 +1,8 @@
 FROM node:18.16.0-alpine3.17 AS build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
-RUN node --dns-result-order=ipv6first "$(which npm)" install
+#RUN node --dns-result-order=ipv6first "$(which npm)" install
+RUN npm install
 COPY . .
 RUN npm run build
 
