@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 RUN apk add --no-cache curl
 RUN curl -Lvik https://registry.npmjs.org/zone.js/-/zone.js-0.11.8.tgz --output zone.js.tgz
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm config set proxy null && npm config set https-proxy null && npm install
 COPY . .
 RUN npm run build
 
