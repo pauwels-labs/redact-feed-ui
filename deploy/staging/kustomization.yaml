@@ -20,10 +20,13 @@ patches:
     - op: replace
       path: /spec/data/0/remoteRef/property
       value: config.json
+    - op: replace
+      path: /spec/data/0/secretKey
+      value: base.json
     - op: add
       path: /spec/data/-
       value:
-        secretKey: "staging.yaml"
+        secretKey: "config.json"
         remoteRef:
           key: "tenants/t-${tenantname}/configs/staging/${name}${namesuffix}/config"
           property: config.json
