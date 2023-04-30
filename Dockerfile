@@ -1,6 +1,7 @@
 FROM node:16.3.0-alpine3.13 AS build
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
+RUN apk --no-cache add ca-certificates && update-ca-certificates
 RUN npm install
 COPY . .
 RUN npm run build
