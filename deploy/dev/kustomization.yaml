@@ -53,9 +53,31 @@ patches:
         name: nginx-config
         mountPath: /nginx-config
     - op: add
+      path: /spec/template/spec/containers/0/volumeMounts/-
+      value:
+        name: nginx-cache
+        mountPath: /var/cache/nginx
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts/-
+      value:
+        name: nginx-pid
+        mountPath: /var/run
+    - op: add
       path: /spec/template/spec/volumes/-
       value:
         name: nginx-config
+        emptyDir:
+          medium: Memory
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: nginx-cache
+        emptyDir:
+          medium: Memory
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: nginx-pid
         emptyDir:
           medium: Memory
   target:

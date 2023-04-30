@@ -11,7 +11,7 @@ RUN mkdir /nginx-config
 COPY --from=build /usr/src/app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/redact-feed /usr/share/nginx/html
 
-RUN apk --no-cache add shadow && usermod -u 1000 nginx && groupmod -g 1000 nginx
+RUN apk --no-cache add shadow && usermod -u 1000 nginx && groupmod -g 1000 nginx && apk del shadow
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html && \
     chown -R nginx:nginx /var/cache/nginx && \
