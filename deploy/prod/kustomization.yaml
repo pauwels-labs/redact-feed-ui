@@ -47,6 +47,25 @@ patches:
     version: v1beta1
     kind: ExternalSecret
     labelSelector: "secretType=env"
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/volumeMounts/0/mountPath
+      value: "/usr/share/nginx/html/assets/config"
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts/-
+      value:
+        name: nginx-config
+        mountPath: /nginx-config
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: nginx-config
+        emptyDir:
+          medium: Memory
+  target:
+    group: apps
+    version: v1
+    kind: Deployment
 replacements:
 - source:
     group: apps
